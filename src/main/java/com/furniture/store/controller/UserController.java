@@ -1,10 +1,10 @@
 package com.furniture.store.controller;
 
-import com.furniture.store.dto.request.CompanyRequest;
 import com.furniture.store.dto.request.UserRequest;
-import com.furniture.store.dto.response.CompanyResponse;
 import com.furniture.store.dto.response.UserResponse;
 import com.furniture.store.serviсe.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,35 +22,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@Tag(name = "Users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
+    @Operation(summary = "Get all Users")
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.findById(id));
+    @Operation(summary = "Get User by ID")
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.findById(userId));
     }
 
+    @Operation(summary = "Create new User")
     @PostMapping
     public ResponseEntity<UserResponse> create(@RequestBody UserRequest userRequest) {
         return ResponseEntity.ok(userService.create(userRequest));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> update(@PathVariable Long id,
+    @Operation(summary = "Update User by ID")
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserResponse> update(@PathVariable Long userId,
                                                @RequestBody UserRequest userRequest) {
-        return ResponseEntity.ok(userService.update(id, userRequest));
+        return ResponseEntity.ok(userService.update(userId, userRequest));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        userService.delete(id);
+    @Operation(summary = "Get User by ID")
+    @DeleteMapping("/{userId}")
+    public void delete(@PathVariable Long userId) {
+        userService.delete(userId);
     }
 }

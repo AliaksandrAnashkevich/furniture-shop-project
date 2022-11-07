@@ -1,10 +1,10 @@
 package com.furniture.store.controller;
 
-import com.furniture.store.dto.request.ItemRequest;
 import com.furniture.store.dto.request.OrderRequest;
-import com.furniture.store.dto.response.ItemResponse;
 import com.furniture.store.dto.response.OrderResponse;
 import com.furniture.store.serviсe.OrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,35 +22,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/orders")
+@Tag(name = "Orders")
 @RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
 
+    @Operation(summary = "Get all Orders")
     @GetMapping
     public ResponseEntity<List<OrderResponse>> getAllOrders() {
         return ResponseEntity.ok(orderService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long id) {
-        return ResponseEntity.ok(orderService.findById(id));
+    @Operation(summary = "Get Order by ID")
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long orderId) {
+        return ResponseEntity.ok(orderService.findById(orderId));
     }
 
+    @Operation(summary = "Create new Order")
     @PostMapping
     public ResponseEntity<OrderResponse> create(@RequestBody OrderRequest orderRequest) {
         return ResponseEntity.ok(orderService.create(orderRequest));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<OrderResponse> update(@PathVariable Long id,
+    @Operation(summary = "Update Order by ID")
+    @PutMapping("/{orderId}")
+    public ResponseEntity<OrderResponse> update(@PathVariable Long orderId,
                                                @RequestBody OrderRequest orderRequest) {
-        return ResponseEntity.ok(orderService.update(id, orderRequest));
+        return ResponseEntity.ok(orderService.update(orderId, orderRequest));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        orderService.delete(id);
+    @Operation(summary = "Get Order by ID")
+    @DeleteMapping("/{orderId}")
+    public void delete(@PathVariable Long orderId) {
+        orderService.delete(orderId);
     }
 }

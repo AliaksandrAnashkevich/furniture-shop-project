@@ -26,6 +26,7 @@ dependencies {
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.mapstruct:mapstruct:1.5.2.Final'
     implementation 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
 
     compileOnly 'org.projectlombok:lombok'
 

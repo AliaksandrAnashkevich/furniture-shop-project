@@ -3,6 +3,8 @@ package com.furniture.store.controller;
 import com.furniture.store.dto.request.ItemRequest;
 import com.furniture.store.dto.response.ItemResponse;
 import com.furniture.store.serviсe.ItemService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,35 +22,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/items")
+@Tag(name = "Items")
 @RequiredArgsConstructor
 public class ItemController {
 
     private final ItemService itemService;
 
+    @Operation(summary = "Get all Items")
     @GetMapping
     public ResponseEntity<List<ItemResponse>> getAllItems() {
         return ResponseEntity.ok(itemService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ItemResponse> getItemById(@PathVariable Long id) {
-        return ResponseEntity.ok(itemService.findById(id));
+    @Operation(summary = "Get Item by ID")
+    @GetMapping("/{itemId}")
+    public ResponseEntity<ItemResponse> getItemById(@PathVariable Long itemId) {
+        return ResponseEntity.ok(itemService.findById(itemId));
     }
 
+    @Operation(summary = "Create new Item")
     @PostMapping
     public ResponseEntity<ItemResponse> create(@RequestBody ItemRequest itemRequest) {
         return ResponseEntity.ok(itemService.create(itemRequest));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ItemResponse> update(@PathVariable Long id,
+    @Operation(summary = "Update Item by ID")
+    @PutMapping("/{itemId}")
+    public ResponseEntity<ItemResponse> update(@PathVariable Long itemId,
                                                @RequestBody ItemRequest itemRequest) {
-        return ResponseEntity.ok(itemService.update(id, itemRequest));
+        return ResponseEntity.ok(itemService.update(itemId, itemRequest));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        itemService.delete(id);
+    @Operation(summary = "Get Item by ID")
+    @DeleteMapping("/{itemId}")
+    public void delete(@PathVariable Long itemId) {
+        itemService.delete(itemId);
     }
 }

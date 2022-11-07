@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 
@@ -31,7 +32,7 @@ import java.time.ZonedDateTime;
 public class Item {
 
     @Id
-    @SequenceGenerator(name = "item_seq", sequenceName = "item_sequence")
+    @SequenceGenerator(name = "item_seq", sequenceName = "item_sequence", allocationSize = 1, initialValue = 100)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
     @Column(name = "id")
     private Long id;
@@ -47,7 +48,7 @@ public class Item {
     private ItemType type;
 
     @Column(name = "price")
-    private Long price;
+    private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")

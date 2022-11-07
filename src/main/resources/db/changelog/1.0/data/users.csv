@@ -1,0 +1,4 @@
+'id','first_name','last_name','email','password','is_approve','created_at','updated_at'
+'1','Aliaksandr','Anashkevich','alex.anashkevich@gmail.com','1111','true','2022-07-25T11:35:18','2022-07-25T11:35:18'
+'2','Jane','Lu','alexlida98@gmail.com','1111','true','2022-07-26T11:35:18','2022-07-26T11:35:18'
+'3','Morgan','X','alexlida55@gmail.com','1111','true','2022-07-27T11:35:18','2022-07-27T11:35:18'

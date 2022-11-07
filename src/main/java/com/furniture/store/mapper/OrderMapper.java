@@ -6,7 +6,8 @@ import com.furniture.store.model.Order;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",
+        uses = {ItemMapper.class})
 public interface OrderMapper {
 
     OrderResponse entityToDto(Order order);

@@ -12,4 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRequest {
+
+    private String firstName;
+    private String lastName;
 }

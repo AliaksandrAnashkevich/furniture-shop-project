@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class Role {
 
     @Id
-    @SequenceGenerator(name = "role_seq", sequenceName = "role_sequence")
+    @SequenceGenerator(name = "role_seq", sequenceName = "role_sequence", allocationSize = 1, initialValue = 100)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_seq")
     @Column(name = "id")
     private Long id;

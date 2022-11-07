@@ -20,6 +20,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 
@@ -33,7 +35,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    @SequenceGenerator(name = "order_seq", sequenceName = "order_sequence")
+    @SequenceGenerator(name = "order_seq", sequenceName = "order_sequence", allocationSize = 1, initialValue = 100)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
     @Column(name = "id")
     private Long id;
@@ -41,14 +43,22 @@ public class Order {
     @Column(name = "number")
     private String number;
 
+    @Column(name = "amount")
+    private BigDecimal amount;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "user_id")
     private User customer;
+
+    @Column(name = "created_at")
+    private ZonedDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private ZonedDateTime updatedAt;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_items",

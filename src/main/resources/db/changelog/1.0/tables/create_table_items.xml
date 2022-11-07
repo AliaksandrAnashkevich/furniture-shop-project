@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="2022.11.02_create_table_items" author="aliaksandr anashkevich">
+        <createTable tableName="items">
+            <column name="id" type="bigint" defaultValueComputed="nextval('item_sequence')">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="money">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp without time zone">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="timestamp without time zone">
+                <constraints nullable="true"/>
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

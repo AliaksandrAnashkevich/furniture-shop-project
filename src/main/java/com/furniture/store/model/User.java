@@ -31,7 +31,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 1, initialValue = 100)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @Column(name = "id")
     private Long id;
@@ -58,7 +58,7 @@ public class User {
     private ZonedDateTime updatedAt;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")},
+    @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles = new HashSet<>();
 }

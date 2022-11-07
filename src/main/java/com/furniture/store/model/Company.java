@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class Company {
 
     @Id
-    @SequenceGenerator(name = "company_seq", sequenceName = "company_sequence")
+    @SequenceGenerator(name = "company_seq", sequenceName = "company_sequence", allocationSize = 1, initialValue = 100)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_seq")
     @Column(name = "id")
     private Long id;

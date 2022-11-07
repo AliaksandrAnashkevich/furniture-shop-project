@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="2022.11.03_load_companies" author="aliaksandr anashkevich">
+        <loadData file="db/changelog/1.0/data/companies.csv"
+                  quotchar="'"
+                  relativeToChangelogFile="false"
+                  separator=","
+                  tableName="companies"
+                  usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="2022.11.03_load_items" author="aliaksandr anashkevich">
+        <loadData commentLineStartsWith="#"
+                  encoding="UTF-8"
+                  file="db/changelog/1.0/data/items.csv"
+                  quotchar="'"
+                  relativeToChangelogFile="false"
+                  separator=","
+                  tableName="items"
+                  usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="description" type="STRING"/>
+            <column name="type" type="STRING"/>
+            <column name="money" type="NUMERIC"/>
+            <column name="company_id" type="NUMERIC"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="2022.11.03_load_roles" author="aliaksandr anashkevich">
+        <loadData commentLineStartsWith="#"
+                  encoding="UTF-8"
+                  file="db/changelog/1.0/data/roles.csv"
+                  quotchar="'"
+                  relativeToChangelogFile="false"
+                  separator=","
+                  tableName="roles"
+                  usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="2022.11.03_load_users" author="aliaksandr anashkevich">
+        <loadData commentLineStartsWith="#"
+                  encoding="UTF-8"
+                  file="db/changelog/1.0/data/users.csv"
+                  quotchar="'"
+                  relativeToChangelogFile="false"
+                  separator=","
+                  tableName="users"
+                  usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="first_name" type="STRING"/>
+            <column name="last_name" type="STRING"/>
+            <column name="email" type="STRING"/>
+            <column name="password" type="STRING"/>
+            <column name="is_approve" type="BOOLEAN"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="2022.11.03_load_user_roles" author="aliaksandr anashkevich">
+        <loadData commentLineStartsWith="#"
+                  encoding="UTF-8"
+                  file="db/changelog/1.0/data/user_roles.csv"
+                  quotchar="'"
+                  relativeToChangelogFile="false"
+                  separator=","
+                  tableName="user_roles"
+                  usePreparedStatements="true">
+            <column name="user_id" type="NUMERIC"/>
+            <column name="role_id" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
